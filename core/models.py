@@ -8,4 +8,4 @@ class Students(models.Model):
     direction = models.CharField('Направление', max_length=15)
 
     def __str__(self):
-        return self.first_name
+        return self.second_name
