@@ -10,7 +10,7 @@ class Department(models.Model):
         verbose_name_plural = 'Кафедры'
 
     def __str__(self):
-        return self.second_name
+        return self.name
 
 
 class Curator(models.Model):

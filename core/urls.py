@@ -3,4 +3,5 @@ import core.views
 
 urlpatterns = [
     path('', core.views.index),
+    path('curators/', core.views.curators),
 ]

@@ -40,18 +40,16 @@
         <th scope="col">#</th>
         <th scope="col">Фамилия</th>
         <th scope="col">Имя</th>
-        <th scope="col">Курсы</th>
-        <th scope="col">Направление</th>
+        <th scope="col">Кафедра</th>
     </tr>
     </thead>
     <tbody>
-    {% for student in students %}
+    {% for curator in curators %}
     <tr>
         <th scope="row">{{forloop.counter}}</th>
-        <td>{{student.second_name}}</td>
-        <td>{{student.first_name}}</td>
-        <td>{{student.cource_num}}</td>
-        <td>{{student.direction.name}}</td>
+        <td>{{curator.second_name}}</td>
+        <td>{{curator.first_name}}</td>
+        <td>{{curator.department}}</td>
     </tr>
     {% endfor %}
     </tbody>
