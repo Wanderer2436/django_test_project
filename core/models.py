@@ -1,9 +1,22 @@
 from django.db import models
 
 
+class Department(models.Model):
+    name = models.CharField('Название', max_length=15)
+
+    class Meta:
+        ordering = ['-name']
+        verbose_name = 'Кафедра'
+        verbose_name_plural = 'Кафедры'
+
+    def __str__(self):
+        return self.second_name
+
+
 class Curator(models.Model):
     first_name = models.CharField('Имя', max_length=15)
     second_name = models.CharField('Фамилия', max_length=15)
+    department = models.ForeignKey('core.Department', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ['-first_name']
@@ -12,8 +25,6 @@ class Curator(models.Model):
 
     def __str__(self):
         return self.second_name
-
-
 
 
 class Students(models.Model):
