@@ -39,28 +39,31 @@
 
 <form class="row g-3">
     <div class="col-auto">
-        <input type="text" class="form-control" placeholder="Куратор" name="name" value="{{request.GET.name}}">
+        <input type="text" class="form-control" placeholder="Студент" name="name" value="{{request.GET.name}}">
     </div>
     <div class="col-auto">
         <button type="submit" class="btn btn-primary">Поиск</button>
     </div>
 </form>
+
 <table class="table table-success">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Фамилия</th>
         <th scope="col">Имя</th>
-        <th scope="col">Кафедра</th>
+        <th scope="col">Курсы</th>
+        <th scope="col">Направление</th>
     </tr>
     </thead>
     <tbody>
-    {% for curator in object_list %}
+    {% for student in object_list %}
     <tr>
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{% url 'core:curators_detail' curator.pk %}">{{curator.second_name}}</a></td>
-        <td>{{curator.first_name}}</td>
-        <td>{{curator.department}}</td>
+        <td><a href="{% url 'core:students_detail' student.pk %}">{{student.second_name}}</a></td>
+        <td>{{student.first_name}}</td>
+        <td>{{student.cource_num}}</td>
+        <td>{{student.direction}}</td>
     </tr>
     {% endfor %}
     </tbody>

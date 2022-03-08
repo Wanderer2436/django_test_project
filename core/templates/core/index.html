@@ -7,7 +7,7 @@
 
     <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
-    <title>Test</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,42 +20,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="curators/">Кураторы</a>
+                    <a class="nav-link" href="{% url 'core:students_list' %}">Студенты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin/">Admin</a>
+                    <a class="nav-link" href="{% url 'core:curators_list' %}">Кураторы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/">Admin</a>
                 </li>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<table class="table table-success">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Фамилия</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Курсы</th>
-        <th scope="col">Направление</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for student in students %}
-    <tr>
-        <th scope="row">{{forloop.counter}}</th>
-        <td>{{student.second_name}}</td>
-        <td>{{student.first_name}}</td>
-        <td>{{student.cource_num}}</td>
-        <td>{{student.direction.name}}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
 
 <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
