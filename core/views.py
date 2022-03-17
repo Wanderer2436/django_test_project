@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 import core.models
 from django.views.generic import TemplateView, ListView, DetailView
+import core.forms
+import core.filters
 
 
 class TitleMixin:
@@ -24,24 +26,33 @@ class Students(TitleMixin, ListView):
     template_name = 'core/students.html'
     title = 'Список студентов'
 
+    def get_filters(self):
+        return core.filters.Student(self.request.GET)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['filters'] = self.get_filters()
+        # context['form'] = core.forms.StudentSearch(self.request.GET)
+        return context
+
     def get_queryset(self):
-        name = self.request.GET.get('name')
-        queryset = core.models.Students.objects.all()
-        if name:
-            queryset = queryset.filter(second_name__icontains=name)
-        return queryset
+        return self.get_filters().qs
 
 
 class Curators(TitleMixin, ListView):
     template_name = 'core/curators.html'
     title = 'Список кураторов'
 
+    def get_filters(self):
+        return core.filters.Curator(self.request.GET)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['filters'] = self.get_filters()
+        return context
+
     def get_queryset(self):
-        name = self.request.GET.get('name')
-        queryset = core.models.Curator.objects.all()
-        if name:
-            queryset = queryset.filter(second_name__icontains=name)
-        return queryset
+        return self.get_filters().qs
 
 
 class StudentDetail(TitleMixin, DetailView):
