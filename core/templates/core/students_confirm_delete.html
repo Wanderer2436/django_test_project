@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="alert alert-danger">
+    Вы действительно хотите удалить запись о студенте? "{{ object }}"
+</div>
+
+<form method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+        Да
+    </button>
+    <a href="{% url 'core:students_list' %}" class="btn btn-success"> Нет</a>
+</form>
+{% endblock %}

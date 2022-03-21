@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 import core.models
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 import core.forms
 import core.filters
+from django.urls import reverse
 
 
 class TitleMixin:
@@ -65,3 +66,63 @@ class CuratorDetail(TitleMixin, DetailView):
     template_name = 'core/curators_detail.html'
     title = 'Детальная информация'
     model = core.models.Curator
+
+
+class StudentsUpdate(TitleMixin, UpdateView):
+    model = core.models.Students
+    form_class = core.forms.StudentsEdit
+
+    def get_title(self):
+        return f'Изменение данных студента "{str(self.get_object())}"'
+
+    def get_success_url(self):
+        return reverse('core:students_list')
+
+
+class StudentsCreate(TitleMixin, CreateView):
+    model = core.models.Students
+    form_class = core.forms.StudentsEdit
+    title = 'Добавление студента'
+
+    def get_success_url(self):
+        return reverse('core:students_list')
+
+
+class StudentsDelete(TitleMixin, DeleteView):
+    model = core.models.Students
+
+    def get_title(self):
+        return f'Удаление студента {str(self.get_object())}'
+
+    def get_success_url(self):
+        return reverse('core:students_list')
+
+
+class CuratorUpdate(TitleMixin, UpdateView):
+    model = core.models.Curator
+    form_class = core.forms.CuratorsEdit
+
+    def get_title(self):
+        return f'Изменение данных куратора "{str(self.get_object())}"'
+
+    def get_success_url(self):
+        return reverse('core:curators_list')
+
+
+class CuratorCreate(TitleMixin, CreateView):
+    model = core.models.Curator
+    form_class = core.forms.CuratorsEdit
+    title = 'Добавление куратора'
+
+    def get_success_url(self):
+        return reverse('core:curators_list')
+
+
+class CuratorDelete(TitleMixin, DeleteView):
+    model = core.models.Curator
+
+    def get_title(self):
+        return f'Удаление куратора {str(self.get_object())}'
+
+    def get_success_url(self):
+        return reverse('core:curators_list')

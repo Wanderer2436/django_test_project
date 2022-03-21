@@ -1,5 +1,11 @@
 {% extends 'core/base.html' %}
 {% block content %}
-{{students}}
+
+<h3>Студент: {{students.second_name}} {{students.first_name}}</h3>
+<button type="button" class="btn btn-success"><a href="{% url 'core:students_update' object.pk %}"
+                                                 style="color: #ffffff">Изменить</a></button>
+<button type="button" class="btn btn-danger"><a href="{% url 'core:students_delete' object.pk %}"
+                                                style="color: #ffffff">Удалить</a></button>
+
 {% endblock %}
 

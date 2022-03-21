@@ -1,4 +1,8 @@
 {% extends 'core/base.html' %}
 {% block content %}
-{{curator}}
+<h3>Куратор: {{curator.second_name}} {{curator.first_name}}</h3>
+<button type="button" class="btn btn-success"><a href="{% url 'core:curators_update' object.pk %}"
+                                                 style="color: #000000">Изменить</a></button>
+<button type="button" class="btn btn-danger"><a href="{% url 'core:curators_delete' object.pk %}"
+                                                style="color: #000000">Удалить</a></button>
 {% endblock %}
